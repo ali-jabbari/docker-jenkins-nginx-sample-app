@@ -1,13 +1,23 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:stable'
+            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     stages {
-        stage('Build') {
+        stage('Clone Repository') {
             steps {
-                sh 'docker build -t docker-jenkins-nginx-sample-app:latest .'
+                checkout scm
             }
         }
-        stage('Deploy') {
+        stage('Build') {
+            steps {
+                sh 'docker build -t docker-jenkins-nginx-sample-app .'
+            }
+        }
+        stage('Run Container') {
             steps {
                 sh 'docker compose down'
                 sh 'docker compose up -d'
