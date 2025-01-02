@@ -10,4 +10,4 @@ COPY . .
 
 RUN yarn run build
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "run", "preview" ]
