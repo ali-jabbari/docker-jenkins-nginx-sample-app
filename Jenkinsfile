@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -p -it 3000:3000 docker-jenkins-nginx-sample-app'
+                sh 'docker run -it -p 3000:3000 docker-jenkins-nginx-sample-app'
             }
         }
     }
