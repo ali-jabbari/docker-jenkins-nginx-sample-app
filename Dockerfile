@@ -10,4 +10,6 @@ COPY . .
 
 RUN yarn run build
 
-CMD [ "yarn", "run", "preview" ]
+EXPOSE 3000
+
+CMD ["yarn", "run", "preview", "--host", "0.0.0.0"]
